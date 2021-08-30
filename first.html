@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: 'Courier New', monospace;
+      }
+    </style>
+  </head>
+
+  <body style= "background-color:gray;">
+
+    
+
+
+    <h1 style= "color: white;" align="center">Time Converter</h1>
+
+
+    <h2 style="color: white;" align="center">
+      <details>
+        <summary>
+          Washington Time
+        </summary>
+        <abbr title="Pacific Daylight Time">PDT</abbr>
+        (GMT-7)
+      </details>
+    </h2>
+    <p id="mdt" style="color: white;" align="center"></p>
+
+    <!-- Ohio Time section -->
+    <h2 style="color: white;"  align="center">
+      <details>
+        <summary>
+          Ohio Time
+        </summary>
+        <abbr title="Eastern Daylight Time">EDT</abbr>
+        (GMT-4)
+      </details>
+    </h2>
+    <p id="edt" style="color: white;"  align="center"></p>
+
+
+    <!-- Texas time section -->
+    <h2 style="color: white;"  align="center">
+      <details>
+        <summary>
+          Texas Time
+        </summary>
+        <abbr title="Central Daylight Time">CDT</abbr>
+        (GMT-5)
+      </details>
+    </h2>
+    <p id="cdt" style="color: white;"  align="center"></p>
+
+
+    <!-- Chinese time section -->
+    <h2 style="color: white;"  align="center">
+      <details>
+        <summary>
+          China Time
+        </summary>
+        <abbr title="China Standard Time">CST</abbr>
+        /
+        <abbr title="Beijing Time">BT</abbr>
+        (GMT+8)
+      </details>
+    </h2>
+    <p id="cst" style="color: white;"  align="center"></p>
+
+
+    <!-- Britain time section -->
+    <h2 style="color: white;"  align="center">
+      <details>
+        <summary>
+          Britain Time
+        </summary>
+        <abbr title="Greenwich Mean Time">GMT</abbr>
+          (GMT+0)
+      </details>
+    </h2>
+
+    <p id="gmt" style="color: white;"  align="center"></p>
+
+<!-- script for everything GODDAMIT IT HAS TO BE BELOW -->
+    <script>
+      function updatingClock() {
+        let today = new Date();
+        let m=today.getMinutes();
+        let h=today.getHours();
+        let s=today.getSeconds();
+  
+  
+        /* updates the mins and secs  by adding 0 in front of mins*/
+        if (m<=9) {
+          m="0" + m
+        }
+        if (s<=9) {
+          s="0" + s
+        }
+
+  
+        /* updating GMT*/
+        let lh = h+7
+        let nlh=lh
+  
+        /* correction for AM PM and new day - GMT */
+        if (nlh>=24) {
+          nlh=nlh-24
+          document.getElementById("gmt").innerHTML = (nlh) + ":" + m + ":" + s + " AM, one day ahead" ;
+        }
+        else if (nlh>=12) {
+          if (nlh>12) {
+            nlh=nlh-12
+          }
+          document.getElementById("gmt").innerHTML = (nlh) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        else { 
+          document.getElementById("gmt").innerHTML = (nlh) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        /* this codes the ID for gmt as gmt */
+
+
+        /* h would be MDT at all times */
+        let wh=h
+
+        /* coding the MDT time */
+        if (wh>=12) {
+          if (wh>12) {
+            wh=wh-12
+          }
+          document.getElementById("mdt").innerHTML = (wh) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        else { 
+          document.getElementById("mdt").innerHTML = (wh) + ":" + m + ":" + s + " PM, same day" ;
+        }
+
+
+
+        /* updating CDT*/
+        let ch = lh-5
+  
+        /* correction for AM PM and new day - CDT */
+        if (ch>=24) {
+          ch=ch-24
+          document.getElementById("cdt").innerHTML = (ch) + ":" + m + ":" + s + " AM, one day ahead" ;
+        }
+        else if (ch>=12) {
+          if (ch>12) {
+            ch=ch-12
+          }
+          document.getElementById("cdt").innerHTML = (ch) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        else { 
+          document.getElementById("cdt").innerHTML = (ch) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        /* this codes the ID for cdt as cdt */
+
+
+
+        /* updating EDT*/
+        let eh = lh-4
+  
+        /* correction for AM PM and new day - EDT */
+        if (eh>=24) {
+          eh=eh-24
+          document.getElementById("edt").innerHTML = (eh) + ":" + m + ":" + s + " AM, one day ahead" ;
+        }
+        else if (eh>=12) {
+          if (eh>12) {
+            eh=eh-12
+          }
+          document.getElementById("edt").innerHTML = (eh) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        else { 
+          document.getElementById("edt").innerHTML = (eh) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        /* this codes the ID for edt as edt */
+
+
+        /* updating CST*/
+        let c2h = lh+8
+  
+        /* correction for AM PM and new day - CST */
+        if (c2h>=24) {
+          c2h=c2h-24
+          document.getElementById("cst").innerHTML = (c2h) + ":" + m + ":" + s + " AM, one day ahead" ;
+        }
+        else if (c2h>=12) {
+          if (c2h>12) {
+            c2h=c2h-12
+          }
+          document.getElementById("cst").innerHTML = (c2h) + ":" + m + ":" + s + " AM, same day" ;
+        }
+        else { 
+          document.getElementById("cst").innerHTML = (c2h) + ":" + m + ":" + s + " PM, same day" ;
+        }
+        /* this codes the ID for cst as cst */
+
+      } 
+      updatingClock()
+      
+      let intervalId = window.setInterval(function(){
+        updatingClock()
+      }, 750);
+
+ 
+     </script>
+
+
+  </body>
+
+</html>
